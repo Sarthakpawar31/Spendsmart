@@ -1,0 +1,34 @@
+[
+  {
+    "timestamp": "2026-04-01T07:42:53.659541+00:00",
+    "source": "web",
+    "valve_id": 3,
+    "action": "ON",
+    "pump_status": true,
+    "note": "Remote command on for valve 3"
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.322695+00:00",
+    "note": "manual: turn Valve 2 ON",
+    "active_valve_id": 2,
+    "pump_status": true
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.440888+00:00",
+    "note": "ai: auto stop Valve 2 at target moisture",
+    "active_valve_id": null,
+    "pump_status": false
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.490496+00:00",
+    "note": "ai: manual lock after target moisture reached",
+    "active_valve_id": null,
+    "pump_status": false
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.510941+00:00",
+    "note": "iot sensor update",
+    "active_valve_id": null,
+    "pump_status": false
+  }
+]

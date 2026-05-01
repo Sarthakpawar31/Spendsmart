@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Alert Timeline</span>
+    <h2>Threshold alerts for your monthly budget</h2>
+    <p>Read and manage your 50%, 80%, and 100% alerts from one clean control center.</p>
+  </div>
+  <form method="post" action="{{ url_for('mark_alerts_read') }}">
+    <button class="btn btn-secondary" type="submit">Mark All Read</button>
+  </form>
+</section>
+
+<section class="timeline-card">
+  {% if alerts_list %}
+    {% for alert in alerts_list %}
+    <article class="timeline-item {{ 'critical' if alert.alert_type == 'alert_100' else 'warning' if alert.alert_type == 'alert_80' else 'normal' }}">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-head">
+          <strong>{{ alert.message }}</strong>
+          <span class="pill {{ 'critical' if alert.alert_type == 'alert_100' else 'warning' if alert.alert_type == 'alert_80' else 'info' }}">
+            {{ alert.percentage|round(0) }}%
+          </span>
+        </div>
+        <p>{{ alert.created_at|datetimeformat }}</p>
+        <form method="post" action="{{ url_for('mark_alerts_read') }}">
+          <input type="hidden" name="alert_id" value="{{ alert.id }}">
+          <button class="text-link" type="submit">{{ 'Read' if alert.is_read else 'Mark as read' }}</button>
+        </form>
+      </div>
+    </article>
+    {% endfor %}
+  {% else %}
+  <div class="empty-state">
+    <i data-lucide="shield-check"></i>
+    <p>No alerts for this month yet.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

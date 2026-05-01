@@ -1,0 +1,562 @@
+[
+  {
+    "timestamp": "2026-04-01T04:42:43.375329+00:00",
+    "soil_moisture": 55.5,
+    "temperature": 33.8,
+    "humidity": 48.2,
+    "water_flow": 0.7,
+    "tank_level": 44.2,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 71.5,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T04:52:43.375747+00:00",
+    "soil_moisture": 51.9,
+    "temperature": 33.1,
+    "humidity": 49.1,
+    "water_flow": 0.0,
+    "tank_level": 46.3,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 69.2,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:02:43.408176+00:00",
+    "soil_moisture": 47.4,
+    "temperature": 31.9,
+    "humidity": 50.4,
+    "water_flow": 1.4,
+    "tank_level": 48.4,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 66.4,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:12:43.438338+00:00",
+    "soil_moisture": 42.6,
+    "temperature": 30.4,
+    "humidity": 52.3,
+    "water_flow": 0.7,
+    "tank_level": 50.5,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 64.3,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:22:43.463978+00:00",
+    "soil_moisture": 38.4,
+    "temperature": 28.8,
+    "humidity": 54.5,
+    "water_flow": 0.0,
+    "tank_level": 52.6,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 63.9,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:32:43.482677+00:00",
+    "soil_moisture": 35.4,
+    "temperature": 27.1,
+    "humidity": 56.9,
+    "water_flow": 0.0,
+    "tank_level": 54.7,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 63.6,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:42:43.514691+00:00",
+    "soil_moisture": 34.0,
+    "temperature": 25.7,
+    "humidity": 59.4,
+    "water_flow": 1.4,
+    "tank_level": 56.8,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 64.4,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T05:52:43.544675+00:00",
+    "soil_moisture": 34.6,
+    "temperature": 24.7,
+    "humidity": 61.8,
+    "water_flow": 0.0,
+    "tank_level": 58.9,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 65.9,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:02:43.575214+00:00",
+    "soil_moisture": 36.9,
+    "temperature": 24.1,
+    "humidity": 64.0,
+    "water_flow": 0.0,
+    "tank_level": 61.0,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 69.4,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:12:43.605914+00:00",
+    "soil_moisture": 40.7,
+    "temperature": 24.1,
+    "humidity": 65.8,
+    "water_flow": 0.7,
+    "tank_level": 63.1,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 75.1,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:22:43.631537+00:00",
+    "soil_moisture": 45.3,
+    "temperature": 24.6,
+    "humidity": 67.1,
+    "water_flow": 1.4,
+    "tank_level": 65.2,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 82.1,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:32:43.657267+00:00",
+    "soil_moisture": 50.0,
+    "temperature": 25.5,
+    "humidity": 67.8,
+    "water_flow": 0.0,
+    "tank_level": 67.3,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 89.3,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:42:43.682407+00:00",
+    "soil_moisture": 54.1,
+    "temperature": 26.9,
+    "humidity": 68.0,
+    "water_flow": 0.7,
+    "tank_level": 69.4,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 95.0,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T06:52:43.710730+00:00",
+    "soil_moisture": 56.9,
+    "temperature": 28.5,
+    "humidity": 67.5,
+    "water_flow": 0.0,
+    "tank_level": 71.5,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 95.0,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:02:43.739053+00:00",
+    "soil_moisture": 58.0,
+    "temperature": 30.2,
+    "humidity": 66.4,
+    "water_flow": 1.4,
+    "tank_level": 73.6,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 92.3,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:12:43.769557+00:00",
+    "soil_moisture": 57.2,
+    "temperature": 31.7,
+    "humidity": 64.8,
+    "water_flow": 0.7,
+    "tank_level": 75.7,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 89.2,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:22:43.804103+00:00",
+    "soil_moisture": 54.6,
+    "temperature": 32.9,
+    "humidity": 62.8,
+    "water_flow": 0.0,
+    "tank_level": 77.8,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 86.0,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:32:43.838716+00:00",
+    "soil_moisture": 50.7,
+    "temperature": 33.7,
+    "humidity": 60.5,
+    "water_flow": 0.0,
+    "tank_level": 79.9,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 78.4,
+      "reason": "Current readings are within a manageable range, so the system can wait before irrigating again.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:42:53.697464+00:00",
+    "soil_moisture": 39.0,
+    "temperature": 34.0,
+    "humidity": 42.0,
+    "water_flow": 1.1,
+    "tank_level": 48.0,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "ON",
+      "should_irrigate": true,
+      "confidence": 60.3,
+      "reason": "Soil moisture is below the efficient threshold and climate conditions suggest irrigation support is needed now.",
+      "model": "Heuristic Fallback"
+    },
+    "alerts": [
+      {
+        "level": "info",
+        "title": "System healthy",
+        "message": "No active anomalies detected across valves, flow, or tank level."
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.348032+00:00",
+    "soil_moisture": 45.2,
+    "temperature": 29.8,
+    "humidity": 51.4,
+    "water_flow": 1.15,
+    "pump_status": true,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 56.5,
+      "reason": "Conditions are stable enough to delay irrigation and continue monitoring.",
+      "model": "Heuristic Fallback"
+    },
+    "valve_states": [
+      {
+        "valve_id": 1,
+        "is_on": false
+      },
+      {
+        "valve_id": 2,
+        "is_on": true
+      },
+      {
+        "valve_id": 3,
+        "is_on": false
+      },
+      {
+        "valve_id": 4,
+        "is_on": false
+      },
+      {
+        "valve_id": 5,
+        "is_on": false
+      },
+      {
+        "valve_id": 6,
+        "is_on": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.464912+00:00",
+    "soil_moisture": 69.1,
+    "temperature": 31.3,
+    "humidity": 58.2,
+    "water_flow": 0.0,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 89.3,
+      "reason": "The field is already in a healthy moisture range, so irrigation should remain OFF.",
+      "model": "Heuristic Fallback"
+    },
+    "valve_states": [
+      {
+        "valve_id": 1,
+        "is_on": false
+      },
+      {
+        "valve_id": 2,
+        "is_on": false
+      },
+      {
+        "valve_id": 3,
+        "is_on": false
+      },
+      {
+        "valve_id": 4,
+        "is_on": false
+      },
+      {
+        "valve_id": 5,
+        "is_on": false
+      },
+      {
+        "valve_id": 6,
+        "is_on": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-01T07:50:27.534001+00:00",
+    "soil_moisture": 69.1,
+    "temperature": 31.3,
+    "humidity": 58.2,
+    "water_flow": 0.0,
+    "pump_status": false,
+    "ai_prediction": {
+      "decision": "OFF",
+      "should_irrigate": false,
+      "confidence": 89.3,
+      "reason": "The field is already in a healthy moisture range, so irrigation should remain OFF.",
+      "model": "Heuristic Fallback"
+    },
+    "valve_states": [
+      {
+        "valve_id": 1,
+        "is_on": false
+      },
+      {
+        "valve_id": 2,
+        "is_on": false
+      },
+      {
+        "valve_id": 3,
+        "is_on": false
+      },
+      {
+        "valve_id": 4,
+        "is_on": false
+      },
+      {
+        "valve_id": 5,
+        "is_on": false
+      },
+      {
+        "valve_id": 6,
+        "is_on": false
+      }
+    ]
+  }
+]

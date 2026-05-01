@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title or "SpendSmart" }} | SpendSmart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+  {% if current_user %}
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">₹</div>
+        <div>
+          <h1>SpendSmart</h1>
+          <p>Expense discipline system</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        {% for item in sidebar_links %}
+          {% if item.endpoint != 'parent_link' or current_user.user_type == 'Student' %}
+          <a href="{{ url_for(item.endpoint) }}" class="nav-link {% if active_page == item.key %}active{% endif %}">
+            <i data-lucide="{{ item.icon }}"></i>
+            <span>{{ item.label }}</span>
+          </a>
+          {% endif %}
+        {% endfor %}
+        <a href="{{ url_for('logout') }}" class="nav-link logout-link">
+          <i data-lucide="log-out"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main-panel">
+      <header class="topbar">
+        <button class="menu-toggle" type="button" id="menuToggle" aria-label="Toggle menu">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="topbar-search">
+          <i data-lucide="search"></i>
+          <input type="text" placeholder="Search spending notes and pages" disabled>
+        </div>
+        <div class="topbar-actions">
+          <a href="{{ url_for('dashboard') }}" class="logo-btn" aria-label="Open SpendSmart dashboard">
+            + SpendSmart
+          </a>
+          <a class="icon-button" href="{{ url_for('alerts') }}" aria-label="Alerts">
+            <i data-lucide="bell"></i>
+          </a>
+          <div class="profile-chip">
+            <span class="avatar">{{ current_user.full_name[:1] }}</span>
+            <div>
+              <strong>{{ current_user.full_name }}</strong>
+              <small>{{ current_user.user_type }}</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-area">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-stack">
+              {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">
+                <span>{{ message }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+  {% else %}
+  <main class="auth-shell">
+    <div class="auth-topbar">
+      <a href="{{ url_for('login') }}" class="logo-btn" aria-label="Open SpendSmart login">
+        + SpendSmart
+      </a>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack auth-flash">
+          {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">
+            <span>{{ message }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block auth_content %}{% endblock %}
+  </main>
+  {% endif %}
+</body>
+</html>

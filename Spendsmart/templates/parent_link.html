@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Parent Monitoring</span>
+    <h2>Link parent details for student oversight</h2>
+    <p>Share a concise monthly summary with parent contact details and track the budget discipline status clearly.</p>
+  </div>
+  <a href="{{ url_for('parent_summary') }}" class="btn btn-secondary">Open Parent Summary</a>
+</section>
+
+<section class="content-grid two-up">
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Parent Details</span>
+        <h3>Linked contact information</h3>
+      </div>
+    </div>
+    <form method="post" class="form-grid">
+      <label class="input-group">
+        <span>Parent name</span>
+        <input type="text" name="parent_name" value="{{ parent.parent_name if parent else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Parent email</span>
+        <input type="email" name="parent_email" value="{{ parent.parent_email if parent else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Parent mobile</span>
+        <input type="tel" name="parent_mobile" value="{{ parent.parent_mobile if parent else '' }}" required>
+      </label>
+      <button class="btn btn-primary" type="submit">{{ 'Update Parent Link' if parent else 'Save Parent Link' }}</button>
+    </form>
+  </article>
+
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Student Summary</span>
+        <h3>{{ summary.month_label }}</h3>
+      </div>
+    </div>
+    <div class="summary-list">
+      <div class="summary-row"><span>Student name</span><strong>{{ summary.student_name }}</strong></div>
+      <div class="summary-row"><span>Budget</span><strong>{{ summary.budget_amount|rupee }}</strong></div>
+      <div class="summary-row"><span>Total spent</span><strong>{{ summary.spent|rupee }}</strong></div>
+      <div class="summary-row"><span>Remaining amount</span><strong>{{ summary.remaining|rupee }}</strong></div>
+      <div class="summary-row"><span>Highest spending category</span><strong>{{ summary.highest_category }}</strong></div>
+      <div class="summary-row"><span>Limit exceeded</span><strong>{{ 'Yes' if summary.limit_exceeded else 'No' }}</strong></div>
+      <div class="summary-row"><span>Parent linked</span><strong>{{ 'Yes' if summary.linked else 'No' }}</strong></div>
+    </div>
+  </article>
+</section>
+{% endblock %}

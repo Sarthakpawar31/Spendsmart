@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Monthly Reports</span>
+    <h2>Generate a polished summary for demos and reviews</h2>
+    <p>Download a PDF report with budget, spending, alerts, categories, and parent summary for student accounts.</p>
+  </div>
+  <a href="{{ url_for('download_report_pdf', month=snapshot.month, year=snapshot.year) }}" class="btn btn-primary">Download PDF</a>
+</section>
+
+<section class="stats-grid compact-grid">
+  <article class="metric-card">
+    <div class="metric-icon blue"><i data-lucide="wallet"></i></div>
+    <div>
+      <span>Budget</span>
+      <h3>{{ snapshot.budget_amount|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon orange"><i data-lucide="receipt"></i></div>
+    <div>
+      <span>Spent</span>
+      <h3>{{ snapshot.spent|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon green"><i data-lucide="piggy-bank"></i></div>
+    <div>
+      <span>Remaining</span>
+      <h3>{{ snapshot.remaining|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon red"><i data-lucide="triangle-alert"></i></div>
+    <div>
+      <span>Usage</span>
+      <h3>{{ snapshot.usage }}%</h3>
+    </div>
+  </article>
+</section>
+
+<section class="content-grid two-up">
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Category Breakdown</span>
+        <h3>{{ snapshot.label }}</h3>
+      </div>
+    </div>
+    <div class="summary-list">
+      {% if categories %}
+        {% for category, total in categories.items() %}
+        <div class="summary-row">
+          <span>{{ category }}</span>
+          <strong>{{ total|rupee }}</strong>
+        </div>
+        {% endfor %}
+      {% else %}
+      <div class="empty-state slim">
+        <p>No category spending recorded yet.</p>
+      </div>
+      {% endif %}
+    </div>
+  </article>
+
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Alert History</span>
+        <h3>Monthly threshold events</h3>
+      </div>
+    </div>
+    <div class="summary-list">
+      {% if alerts_list %}
+        {% for alert in alerts_list %}
+        <div class="summary-row vertical">
+          <strong>{{ alert.message }}</strong>
+          <span>{{ alert.created_at|datetimeformat }}</span>
+        </div>
+        {% endfor %}
+      {% else %}
+      <div class="empty-state slim">
+        <p>No alerts recorded in this period.</p>
+      </div>
+      {% endif %}
+    </div>
+  </article>
+</section>
+
+<section class="panel-card table-card">
+  <div class="panel-head">
+    <div>
+      <span class="panel-kicker">Expense List</span>
+      <h3>All monthly transactions</h3>
+    </div>
+  </div>
+  {% if expenses %}
+  <div class="table-responsive">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Payment</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for expense in expenses %}
+        <tr>
+          <td>{{ expense.expense_date }}</td>
+          <td>{{ expense.category }}</td>
+          <td>{{ expense.amount|rupee }}</td>
+          <td>{{ expense.payment_method }}</td>
+          <td>{{ expense.description or 'No description' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <i data-lucide="file-search"></i>
+    <p>No expenses were recorded for this month.</p>
+  </div>
+  {% endif %}
+</section>
+
+{% if parent_summary %}
+<section class="panel-card">
+  <div class="panel-head">
+    <div>
+      <span class="panel-kicker">Parent Summary</span>
+      <h3>Student monitoring view</h3>
+    </div>
+  </div>
+  <div class="summary-list">
+    <div class="summary-row"><span>Student name</span><strong>{{ parent_summary.student_name }}</strong></div>
+    <div class="summary-row"><span>Budget</span><strong>{{ parent_summary.budget_amount|rupee }}</strong></div>
+    <div class="summary-row"><span>Total spent</span><strong>{{ parent_summary.spent|rupee }}</strong></div>
+    <div class="summary-row"><span>Remaining</span><strong>{{ parent_summary.remaining|rupee }}</strong></div>
+    <div class="summary-row"><span>Highest category</span><strong>{{ parent_summary.highest_category }}</strong></div>
+    <div class="summary-row"><span>Limit exceeded</span><strong>{{ 'Yes' if parent_summary.limit_exceeded else 'No' }}</strong></div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

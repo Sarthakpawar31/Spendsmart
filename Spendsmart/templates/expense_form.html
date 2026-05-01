@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">{{ "Edit Expense" if edit_mode else "Add Expense" }}</span>
+    <h2>{{ "Update expense details" if edit_mode else "Record a new daily expense" }}</h2>
+    <p>Capture every expense with category, payment method, date, and notes to keep your monthly limit accurate.</p>
+  </div>
+</section>
+
+<section class="centered-card">
+  <article class="panel-card form-panel">
+    <form method="post" class="form-grid two-column">
+      <label class="input-group">
+        <span>Amount (₹)</span>
+        <input type="number" step="0.01" min="1" name="amount" value="{{ form.amount if form else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Category</span>
+        <select name="category" required>
+          <option value="">Choose category</option>
+          {% for category in expense_categories %}
+          <option value="{{ category }}" {% if form and form.category == category %}selected{% endif %}>{{ category }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label class="input-group">
+        <span>Date</span>
+        <input type="date" name="expense_date" value="{{ form.expense_date if form else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Payment Method</span>
+        <select name="payment_method" required>
+          <option value="">Choose payment method</option>
+          {% for method in payment_methods %}
+          <option value="{{ method }}" {% if form and form.payment_method == method %}selected{% endif %}>{{ method }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label class="input-group full-width">
+        <span>Description</span>
+        <textarea name="description" rows="5" placeholder="Example: Lunch at canteen, metro recharge, textbook purchase">{{ form.description if form else '' }}</textarea>
+      </label>
+      <div class="form-actions full-width">
+        <button class="btn btn-primary" type="submit">{{ "Save Changes" if edit_mode else "Add Expense" }}</button>
+        <a href="{{ url_for('expense_history') }}" class="btn btn-ghost">Back to History</a>
+      </div>
+    </form>
+  </article>
+</section>
+{% endblock %}

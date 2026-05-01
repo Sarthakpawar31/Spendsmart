@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Dashboard Overview</span>
+    <h2>{{ greeting }}</h2>
+    <p>Track and control your spending with live budget discipline and monthly alert intelligence.</p>
+  </div>
+  <a href="{{ url_for('add_expense') }}" class="btn btn-primary">
+    <i data-lucide="plus"></i>
+    Add Expense
+  </a>
+</section>
+
+<section class="welcome-banner">
+  <div>
+    <h3>{{ snapshot.label }}</h3>
+    <p>Use your self-defined limit even when your bank balance is higher. SpendSmart keeps your habits disciplined.</p>
+  </div>
+  <div class="banner-status {{ alert_status.severity }}">
+    <span>{{ alert_status.headline }}</span>
+    <strong>{{ alert_status.message }}</strong>
+  </div>
+</section>
+
+<section class="stats-grid">
+  <article class="metric-card">
+    <div class="metric-icon blue"><i data-lucide="wallet"></i></div>
+    <div>
+      <span>Monthly Budget</span>
+      <h3>{{ snapshot.budget_amount|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon orange"><i data-lucide="arrow-down-circle"></i></div>
+    <div>
+      <span>Total Spent</span>
+      <h3>{{ snapshot.spent|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon green"><i data-lucide="badge-indian-rupee"></i></div>
+    <div>
+      <span>Remaining Budget</span>
+      <h3>{{ snapshot.remaining|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon red"><i data-lucide="gauge"></i></div>
+    <div>
+      <span>Usage Percentage</span>
+      <h3>{{ snapshot.usage }}%</h3>
+    </div>
+  </article>
+</section>
+
+<section class="dashboard-grid">
+  <article class="panel-card gauge-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Budget Overview</span>
+        <h3>Monthly usage gauge</h3>
+      </div>
+    </div>
+    <div class="chart-wrap small-gauge">
+      <canvas id="budgetGaugeChart"></canvas>
+    </div>
+    <div class="gauge-summary">
+      <strong>{{ snapshot.status }}</strong>
+      <span>{{ snapshot.spent|rupee }} spent out of {{ snapshot.budget_amount|rupee }}</span>
+    </div>
+  </article>
+
+  <article class="panel-card alert-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Alert Center</span>
+        <h3>Budget threshold notifications</h3>
+      </div>
+      <a href="{{ url_for('alerts') }}" class="text-link">View all</a>
+    </div>
+    <div class="alert-list">
+      {% if alert_center %}
+        {% for alert in alert_center %}
+        <div class="alert-item {{ 'critical' if alert.alert_type == 'alert_100' else 'warning' if alert.alert_type == 'alert_80' else 'normal' }}">
+          <div class="alert-badge">
+            {% if alert.alert_type == 'alert_100' %}🚨{% elif alert.alert_type == 'alert_80' %}⚠️{% else %}🔔{% endif %}
+          </div>
+          <div>
+            <strong>{{ alert.message }}</strong>
+            <span>{{ alert.created_at|datetimeformat }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state slim">
+          <i data-lucide="shield-check"></i>
+          <p>No alerts yet. Keep logging expenses to monitor thresholds.</p>
+        </div>
+      {% endif %}
+    </div>
+  </article>
+
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Category Spending</span>
+        <h3>Donut chart by category</h3>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="dashboardCategoryChart"></canvas>
+    </div>
+  </article>
+
+  <article class="panel-card table-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Recent Expenses</span>
+        <h3>Latest transactions</h3>
+      </div>
+      <a href="{{ url_for('expense_history') }}" class="text-link">Open history</a>
+    </div>
+    {% if recent_expenses %}
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for expense in recent_expenses %}
+          <tr>
+            <td>{{ expense.expense_date }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.amount|rupee }}</td>
+            <td>{{ expense.payment_method }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <i data-lucide="receipt"></i>
+      <p>No expenses added yet. Start with your first daily entry.</p>
+    </div>
+    {% endif %}
+  </article>
+</section>
+
+<script id="dashboard-chart-data" type="application/json">{{ chart_data|tojson }}</script>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Budget Management</span>
+    <h2>Set and extend your monthly spending limit</h2>
+    <p>SpendSmart helps you stick to a disciplined budget even when more money is available elsewhere.</p>
+  </div>
+</section>
+
+<section class="stats-grid compact-grid">
+  <article class="metric-card">
+    <div class="metric-icon blue"><i data-lucide="calendar-range"></i></div>
+    <div>
+      <span>Budget Month</span>
+      <h3>{{ snapshot.label }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon blue"><i data-lucide="wallet"></i></div>
+    <div>
+      <span>Current Budget</span>
+      <h3>{{ snapshot.budget_amount|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon orange"><i data-lucide="activity"></i></div>
+    <div>
+      <span>Used</span>
+      <h3>{{ snapshot.usage }}%</h3>
+    </div>
+  </article>
+</section>
+
+<section class="content-grid two-up">
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Set Monthly Budget</span>
+        <h3>Create or update budget</h3>
+      </div>
+    </div>
+    <form method="post" action="{{ url_for('set_budget') }}" class="form-grid two-column">
+      <label class="input-group">
+        <span>Month</span>
+        <select name="month" required>
+          {% for name in month_names %}
+          <option value="{{ loop.index }}" {% if snapshot.month == loop.index %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label class="input-group">
+        <span>Year</span>
+        <input type="number" name="year" min="2024" value="{{ snapshot.year }}" required>
+      </label>
+      <label class="input-group full-width">
+        <span>Budget Amount (₹)</span>
+        <input type="number" min="1" step="0.01" name="budget_amount" value="{{ snapshot.budget_amount if snapshot.budget_amount else '' }}" required>
+      </label>
+      <label class="input-group full-width">
+        <span>Reason or goal</span>
+        <textarea name="reason" rows="4" placeholder="Example: Save for semester books and reduce dining out">{{ snapshot.budget.reason if snapshot.budget else '' }}</textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Save Budget</button>
+    </form>
+  </article>
+
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Extend Budget</span>
+        <h3>Raise your limit if needed</h3>
+      </div>
+    </div>
+    <div class="progress-block">
+      <div class="progress-labels">
+        <strong>Budget usage</strong>
+        <span>{{ snapshot.usage }}%</span>
+      </div>
+      <div class="progress-bar">
+        <span style="width: {{ [snapshot.usage, 100]|min }}%"></span>
+      </div>
+    </div>
+    <form method="post" action="{{ url_for('extend_budget') }}" class="form-grid">
+      <input type="hidden" name="month" value="{{ snapshot.month }}">
+      <input type="hidden" name="year" value="{{ snapshot.year }}">
+      <label class="input-group">
+        <span>New Budget Amount (₹)</span>
+        <input type="number" min="1" step="0.01" name="new_budget_amount" placeholder="Enter a higher amount" required>
+      </label>
+      <label class="input-group">
+        <span>Extension reason</span>
+        <textarea name="reason" rows="4" placeholder="Why are you extending this budget?"></textarea>
+      </label>
+      <button class="btn btn-secondary" type="submit">Extend Budget</button>
+    </form>
+  </article>
+</section>
+
+<section class="panel-card">
+  <div class="panel-head">
+    <div>
+      <span class="panel-kicker">Extension History</span>
+      <h3>Previous budget changes</h3>
+    </div>
+  </div>
+  {% if extensions %}
+  <div class="table-responsive">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Old Budget</th>
+          <th>New Budget</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for extension in extensions %}
+        <tr>
+          <td>{{ extension.created_at|datetimeformat }}</td>
+          <td>{{ extension.old_budget|rupee }}</td>
+          <td>{{ extension.new_budget|rupee }}</td>
+          <td>{{ extension.reason or 'No reason added' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <i data-lucide="history"></i>
+    <p>No budget extensions have been made yet.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

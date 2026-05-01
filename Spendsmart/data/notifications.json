@@ -1,0 +1,32 @@
+[
+  {
+    "id": "notif-1775029827282",
+    "timestamp": "2026-04-01T07:50:27.282042+00:00",
+    "title": "Test",
+    "message": "Manual alert",
+    "level": "info",
+    "valve_id": null,
+    "source": "api",
+    "mobile_delivery": "queued"
+  },
+  {
+    "id": "notif-1775029827349",
+    "timestamp": "2026-04-01T07:50:27.349863+00:00",
+    "title": "Valve 2 ON",
+    "message": "Valve 2 was turned ON from the manual control path.",
+    "level": "info",
+    "valve_id": 2,
+    "source": "manual",
+    "mobile_delivery": "queued"
+  },
+  {
+    "id": "notif-1775029827466",
+    "timestamp": "2026-04-01T07:50:27.466563+00:00",
+    "title": "Valve 2 stopped automatically",
+    "message": "Target moisture reached at 67.0%. Valve turned OFF and mobile alert dispatched.",
+    "level": "success",
+    "valve_id": 2,
+    "source": "ai",
+    "mobile_delivery": "queued"
+  }
+]

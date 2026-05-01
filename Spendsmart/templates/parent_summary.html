@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Parent Summary</span>
+    <h2>Student budget status for parent review</h2>
+    <p>This view highlights the linked student account, monthly budget, top category, and limit status in one compact summary.</p>
+  </div>
+</section>
+
+<section class="panel-card">
+  <div class="summary-grid">
+    <div class="summary-tile">
+      <span>Student Name</span>
+      <strong>{{ summary.student_name }}</strong>
+    </div>
+    <div class="summary-tile">
+      <span>Monthly Budget</span>
+      <strong>{{ summary.budget_amount|rupee }}</strong>
+    </div>
+    <div class="summary-tile">
+      <span>Total Spent</span>
+      <strong>{{ summary.spent|rupee }}</strong>
+    </div>
+    <div class="summary-tile">
+      <span>Remaining Amount</span>
+      <strong>{{ summary.remaining|rupee }}</strong>
+    </div>
+    <div class="summary-tile">
+      <span>Highest Spending Category</span>
+      <strong>{{ summary.highest_category }}</strong>
+    </div>
+    <div class="summary-tile">
+      <span>Limit Exceeded</span>
+      <strong>{{ 'Yes' if summary.limit_exceeded else 'No' }}</strong>
+    </div>
+  </div>
+  <div class="parent-note">
+    <h3>Linked Parent Status</h3>
+    <p>
+      {% if summary.parent %}
+      {{ summary.parent.parent_name }} is linked with {{ summary.parent.parent_email }} and {{ summary.parent.parent_mobile }}.
+      {% else %}
+      No parent is linked to this student account yet.
+      {% endif %}
+    </p>
+  </div>
+</section>
+{% endblock %}

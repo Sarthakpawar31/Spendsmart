@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Analytics & Insights</span>
+    <h2>Understand how your money moves</h2>
+    <p>Study category patterns, daily spikes, and monthly trends to build stronger spending habits.</p>
+  </div>
+</section>
+
+<section class="stats-grid compact-grid">
+  <article class="metric-card">
+    <div class="metric-icon blue"><i data-lucide="pie-chart"></i></div>
+    <div>
+      <span>Highest Spending Category</span>
+      <h3>{{ highest_category }}</h3>
+      <small>{{ highest_category_amount|rupee }}</small>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon green"><i data-lucide="trending-up"></i></div>
+    <div>
+      <span>Average Daily Spend</span>
+      <h3>{{ average_daily|rupee }}</h3>
+    </div>
+  </article>
+  <article class="metric-card">
+    <div class="metric-icon orange"><i data-lucide="target"></i></div>
+    <div>
+      <span>Usage</span>
+      <h3>{{ snapshot.usage }}%</h3>
+    </div>
+  </article>
+</section>
+
+<section class="dashboard-grid analytics-grid">
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Category Breakdown</span>
+        <h3>Donut chart</h3>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="analyticsDonutChart"></canvas>
+    </div>
+  </article>
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Daily Spending</span>
+        <h3>Line chart</h3>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="analyticsLineChart"></canvas>
+    </div>
+  </article>
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Monthly Trend</span>
+        <h3>Bar chart</h3>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="analyticsBarChart"></canvas>
+    </div>
+  </article>
+  <article class="panel-card insight-panel">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Smart Suggestions</span>
+        <h3>Insights generated from your spending</h3>
+      </div>
+    </div>
+    <div class="insight-list">
+      {% for insight in insights %}
+      <div class="insight-item">
+        <i data-lucide="sparkles"></i>
+        <span>{{ insight }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+
+<script id="analytics-chart-data" type="application/json">{{ chart_data|tojson }}</script>
+{% endblock %}

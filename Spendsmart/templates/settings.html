@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Settings</span>
+    <h2>Manage profile, password, and notifications</h2>
+    <p>Keep your account details updated and configure how SpendSmart communicates important warnings.</p>
+  </div>
+</section>
+
+<section class="content-grid two-up">
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Profile Settings</span>
+        <h3>Account information</h3>
+      </div>
+    </div>
+    <form method="post" class="form-grid">
+      <input type="hidden" name="action" value="profile">
+      <label class="input-group">
+        <span>Full name</span>
+        <input type="text" name="full_name" value="{{ current_user.full_name }}" required>
+      </label>
+      <label class="input-group">
+        <span>Email address</span>
+        <input type="email" value="{{ current_user.email }}" disabled>
+      </label>
+      <label class="input-group">
+        <span>Mobile number</span>
+        <input type="tel" name="mobile" value="{{ current_user.mobile }}" required>
+      </label>
+      <div class="toggle-group">
+        <label class="toggle-row">
+          <input type="checkbox" name="notifications_enabled" {% if current_user.notifications_enabled %}checked{% endif %}>
+          <span>Enable budget notifications</span>
+        </label>
+        <label class="toggle-row">
+          <input type="checkbox" name="parent_summary_enabled" {% if current_user.parent_summary_enabled %}checked{% endif %}>
+          <span>Enable parent/student summary reminders</span>
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit">Save Profile</button>
+    </form>
+  </article>
+
+  <article class="panel-card">
+    <div class="panel-head">
+      <div>
+        <span class="panel-kicker">Security</span>
+        <h3>Change password</h3>
+      </div>
+    </div>
+    <form method="post" class="form-grid">
+      <input type="hidden" name="action" value="password">
+      <label class="input-group">
+        <span>Current password</span>
+        <input type="password" name="current_password" required>
+      </label>
+      <label class="input-group">
+        <span>New password</span>
+        <input type="password" name="new_password" required>
+      </label>
+      <label class="input-group">
+        <span>Confirm password</span>
+        <input type="password" name="confirm_password" required>
+      </label>
+      <button class="btn btn-secondary" type="submit">Update Password</button>
+    </form>
+    <div class="helper-note">
+      <span>If you forget your password later, use the </span>
+      <a href="{{ url_for('forgot_password') }}">email OTP reset flow</a>
+      <span> from the login page.</span>
+    </div>
+  </article>
+</section>
+
+{% if current_user.user_type == 'Student' %}
+<section class="panel-card">
+  <div class="panel-head">
+    <div>
+      <span class="panel-kicker">Parent Link Status</span>
+      <h3>Monitoring connection</h3>
+    </div>
+    <a href="{{ url_for('parent_link') }}" class="text-link">Open parent monitoring</a>
+  </div>
+  <div class="summary-list">
+    <div class="summary-row"><span>Current month budget</span><strong>{{ snapshot.budget_amount|rupee }}</strong></div>
+    <div class="summary-row"><span>Linked parent</span><strong>{{ parent.parent_name if parent else 'Not linked yet' }}</strong></div>
+    <div class="summary-row"><span>Parent email</span><strong>{{ parent.parent_email if parent else '-' }}</strong></div>
+    <div class="summary-row"><span>Parent mobile</span><strong>{{ parent.parent_mobile if parent else '-' }}</strong></div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block auth_content %}
+<section class="auth-layout register-layout">
+  <div class="auth-hero">
+    <span class="eyebrow">SpendSmart Registration</span>
+    <h1>Create your budgeting workspace and start tracking every rupee.</h1>
+    <p>Choose a normal account or a student account with parent monitoring for smarter and more transparent expense management.</p>
+  </div>
+  <div class="auth-card wide">
+    <div class="auth-card-header">
+      <h2>Create account</h2>
+      <p>All fields are required for a smooth demo-ready setup.</p>
+    </div>
+    <form method="post" class="form-grid two-column" id="registerForm">
+      <label class="input-group">
+        <span>Full name</span>
+        <input type="text" name="full_name" value="{{ form.full_name if form else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Email address</span>
+        <input type="email" name="email" value="{{ form.email if form else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Mobile number</span>
+        <input type="tel" name="mobile" value="{{ form.mobile if form else '' }}" required>
+      </label>
+      <label class="input-group">
+        <span>Password</span>
+        <input type="password" name="password" required>
+      </label>
+      <label class="input-group full-width">
+        <span>User type</span>
+        <select name="user_type" id="userTypeSelect" required>
+          <option value="Normal User" {% if form and form.user_type == 'Normal User' %}selected{% endif %}>Normal User</option>
+          <option value="Student" {% if form and form.user_type == 'Student' %}selected{% endif %}>Student</option>
+        </select>
+      </label>
+      <div class="student-fields full-width" id="studentFields">
+        <div class="card-section-subtitle">Parent monitoring details</div>
+        <div class="form-grid two-column compact">
+          <label class="input-group">
+            <span>Parent name</span>
+            <input type="text" name="parent_name" value="{{ form.parent_name if form else '' }}">
+          </label>
+          <label class="input-group">
+            <span>Parent email</span>
+            <input type="email" name="parent_email" value="{{ form.parent_email if form else '' }}">
+          </label>
+          <label class="input-group full-width">
+            <span>Parent mobile number</span>
+            <input type="tel" name="parent_mobile" value="{{ form.parent_mobile if form else '' }}">
+          </label>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block full-width" type="submit">Create SpendSmart Account</button>
+    </form>
+    <p class="auth-footer">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+  </div>
+</section>
+{% endblock %}

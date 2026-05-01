@@ -1,0 +1,24 @@
+2026-05-02 00:18:07,701 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-02 00:18:07,701 INFO [33mPress CTRL+C to quit[0m
+2026-05-02 00:18:07,702 INFO  * Restarting with stat
+2026-05-02 00:18:07,963 WARNING  * Debugger is active!
+2026-05-02 00:18:07,965 INFO  * Debugger PIN: 117-190-740
+2026-05-02 00:19:40,918 INFO  * Detected change in 'D:\\project\\Spendsmart\\app.py', reloading
+2026-05-02 00:19:40,964 INFO  * Restarting with stat
+2026-05-02 00:19:41,263 WARNING  * Debugger is active!
+2026-05-02 00:19:41,265 INFO  * Debugger PIN: 117-190-740
+2026-05-02 00:25:38,265 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-02 00:25:38,267 INFO [33mPress CTRL+C to quit[0m
+2026-05-02 00:25:38,269 INFO  * Restarting with stat
+2026-05-02 00:25:39,068 WARNING  * Debugger is active!
+2026-05-02 00:25:39,072 INFO  * Debugger PIN: 117-190-740
+2026-05-02 00:26:35,395 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-02 00:26:35,395 INFO [33mPress CTRL+C to quit[0m
+2026-05-02 00:26:35,397 INFO  * Restarting with stat
+2026-05-02 00:26:35,887 WARNING  * Debugger is active!
+2026-05-02 00:26:35,889 INFO  * Debugger PIN: 117-190-740
+2026-05-02 00:30:39,460 INFO  * Detected change in 'D:\\project\\Spendsmart\\app.py', reloading
+2026-05-02 00:30:39,922 INFO  * Detected change in 'D:\\project\\Spendsmart\\app.py', reloading

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="eyebrow">Expense History</span>
+    <h2>Search, filter, and manage every expense</h2>
+    <p>Find transactions by note, category, date range, or payment method and review the filtered total instantly.</p>
+  </div>
+</section>
+
+<section class="panel-card">
+  <form method="get" class="form-grid filter-grid">
+    <label class="input-group">
+      <span>Search</span>
+      <input type="text" name="search" value="{{ filters.search }}" placeholder="Description or category">
+    </label>
+    <label class="input-group">
+      <span>Category</span>
+      <select name="category">
+        <option value="">All categories</option>
+        {% for category in expense_categories %}
+        <option value="{{ category }}" {% if filters.category == category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="input-group">
+      <span>Payment method</span>
+      <select name="payment_method">
+        <option value="">All methods</option>
+        {% for method in payment_methods %}
+        <option value="{{ method }}" {% if filters.payment_method == method %}selected{% endif %}>{{ method }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="input-group">
+      <span>Start date</span>
+      <input type="date" name="start_date" value="{{ filters.start_date }}">
+    </label>
+    <label class="input-group">
+      <span>End date</span>
+      <input type="date" name="end_date" value="{{ filters.end_date }}">
+    </label>
+    <div class="form-actions align-end">
+      <button class="btn btn-primary" type="submit">Apply Filters</button>
+      <a href="{{ url_for('expense_history') }}" class="btn btn-ghost">Reset</a>
+    </div>
+  </form>
+</section>
+
+<section class="page-header inline-head">
+  <div>
+    <h3>Filtered Total</h3>
+    <p>{{ filtered_total|rupee }}</p>
+  </div>
+  <a href="{{ url_for('add_expense') }}" class="btn btn-secondary">Add New Expense</a>
+</section>
+
+<section class="panel-card table-card">
+  {% if expenses %}
+  <div class="table-responsive">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Payment</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for expense in expenses %}
+        <tr>
+          <td>{{ expense.expense_date }}</td>
+          <td>{{ expense.category }}</td>
+          <td>{{ expense.amount|rupee }}</td>
+          <td>{{ expense.payment_method }}</td>
+          <td>{{ expense.description or 'No description' }}</td>
+          <td>
+            <div class="row-actions">
+              <a href="{{ url_for('edit_expense', expense_id=expense.id) }}" class="table-action">Edit</a>
+              <form method="post" action="{{ url_for('delete_expense', expense_id=expense.id) }}" onsubmit="return confirm('Delete this expense?');">
+                <button class="table-action danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <i data-lucide="search-x"></i>
+    <p>No expenses match your current filters.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

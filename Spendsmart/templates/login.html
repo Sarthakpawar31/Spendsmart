@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block auth_content %}
+<section class="auth-layout">
+  <div class="auth-hero">
+    <span class="eyebrow">Smart Expense Management System</span>
+    <h1>Build disciplined spending habits with a premium fintech dashboard.</h1>
+    <p>Set a monthly budget in ₹, track every expense, monitor alerts in real time, and stay in control of your financial goals.</p>
+    <div class="auth-stats">
+      <article class="auth-stat-card">
+        <strong>50% / 80% / 100%</strong>
+        <span>Automated alert thresholds</span>
+      </article>
+      <article class="auth-stat-card">
+        <strong>Student + Parent</strong>
+        <span>Monitoring-ready accounts</span>
+      </article>
+    </div>
+  </div>
+  <div class="auth-card">
+    <div class="auth-card-header">
+      <h2>Welcome back</h2>
+      <p>Sign in to view your SpendSmart dashboard.</p>
+    </div>
+    <form method="post" class="form-grid">
+      <label class="input-group">
+        <span>Email address</span>
+        <input type="email" name="email" value="{{ form.email if form else '' }}" placeholder="name@example.com" required>
+      </label>
+      <label class="input-group">
+        <span>Password</span>
+        <input type="password" name="password" placeholder="Enter your password" required>
+      </label>
+      <div class="auth-inline-links">
+        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Log In</button>
+    </form>
+    <p class="auth-footer">New to SpendSmart? <a href="{{ url_for('register') }}">Create an account</a></p>
+  </div>
+</section>
+{% endblock %}
